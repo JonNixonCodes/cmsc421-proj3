@@ -54,7 +54,7 @@ def main(state, f_line, walls):
 	dU, dV = convertOutputIndexToChangeInVelocity(dVelIndex)
 
 	# Display the identified digit:
-	print("The output velocity has been identified as a {}".format(outputVelocity))
+	print("The change in velocity has been identified as a {}".format((dU,dV)))
 
 	(u,v) = state[1]
 	return ((u+dU),(v+dV))
