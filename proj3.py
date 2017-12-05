@@ -46,17 +46,18 @@ def main(state, f_line, walls):
 
 		# Now apply the model input vector:
 
-		# Applying the trained model to identify the output velocity from input:
+		# Applying the trained model to identify the output change in velocity from input:
 		# output is in index format
-		velocityIndex = identifyOutputVelocity(sess, x, y_conv, keep_prob, input_vector)
+		dVelIndex = identifyOutputVelocity(sess, x, y_conv, keep_prob, input_vector)
 
-	#convert velocity to correct tuple format
-	outputVelocity = convertOutputIndexToChangeInVelocity(velocityIndex)
+	#convert change in velocity to velocity
+	dU, dV = convertOutputIndexToChangeInVelocity(dVelIndex)
 
 	# Display the identified digit:
 	print("The output velocity has been identified as a {}".format(outputVelocity))
 
-	return outputVelocity
+	(u,v) = state[1]
+	return ((u+dU),(v+dV))
 
 def test():
 	problem = maketrack.main()
